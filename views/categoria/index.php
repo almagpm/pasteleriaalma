@@ -1,46 +1,40 @@
 
+<section id="hero" class="hero">
+
+  
+      <div class="container position-relative">
+      <div class="col-lg-6 order-2 order-lg-1 d-flex flex-column justify-content-center text-center text-lg-start">
+          <h2>Categorias</span></h2>
+        </div>
+        <div class="row gy-4 mt-5">
+        
+        <?php foreach ($data as $key => $categoria): ?>
+
+          <div class="col-xl-3 col-md-6" data-aos="fade-up" data-aos-delay="100">
+            <div class="icon-box">
+              <div class="icon"><i class="bi bi-easel"></i></div>
+              <h4 class="title"><a href="categoria.php?action=task&id=<?php echo $categoria['id_categoria'] ?>" class="stretched-link"><?php echo $categoria['categoria']; ?></a></h4>
+            </div>
+          </div><!--End Icon Box -->
+
+          <?php endforeach; ?>
 
 
-<h1>Categorias</h1>
-<a href="categoria.php?action=new" class="btn btn-success">Nuevo</a>
-<a href="reporte.php?action=reporte" class="btn btn-dark">Generar Reporte</a>
+        </div>
 
-<table class="table">
-  <thead>
-    <tr>
-      <th scope="col" class="col-md-4">ID</th>
-      <th scope="col" class="col-md-4">Categoria</th>
-      <th scope="col" class="col-md-4">Opciones</th>
-    </tr>
-  </thead>
-  <tbody>
-    <?php foreach ($data as $key => $categoria): ?>
-      <tr>
-        <th scope="row">
-          <?php echo $categoria['id_categoria']; ?>
-        </th>
-        <td>
-          <?php echo $categoria['categoria']; ?>
-        </td>
-        <td>
-          <div class="btn-group" role="group" aria-label="Menu Renglon">
-            <a class="btn btn-dark" href="categoria.php?action=task&id=<?php echo $categoria['id_categoria'] ?>">Productos</a>
-            <a class="btn btn-primary"
-              href="categoria.php?action=edit&id=<?php echo $categoria['id_categoria'] ?>">Modificar</a>
-            <a class="btn btn-danger"
-              href="categoria.php?action=delete&id=<?php echo $categoria['id_categoria'] ?>">Eliminar</a>
-          </div>
-        </td>
-      </tr>
-    <?php endforeach; ?>
-  </tbody>
-  <tr>
-    <th scope="col"></th>
-    <th scope="col"></th>
-    <th scope="col">Se encontraron
-      <?php echo sizeof($data); ?> registros.
-    </th>
-  </tr>
-</table>
+    </div>
+
+    <br>
+    <br>
+    <br>
+    <br>
+
+    </div>
+  </section>
+
+
+
+
+
 
 

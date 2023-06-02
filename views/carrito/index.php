@@ -4,10 +4,11 @@
   <thead>
     <tr>
       <th scope="col" class="col-md-1">id</th>
-      <th scope="col" class="col-md-1">id usuario</th>
       <th scope="col" class="col-md-1">id producto</th>
+      <th scope="col" class="col-md-1">id usuario</th>
       <th scope="col" class="col-md-1">cantidad</th>
-      <th scope="col" class="col-md-2">fecha de creacion</th>
+      <th scope="col" class="col-md-2">costo</th>
+      <th scope="col" class="col-md-2">fecha</th>
       <th scope="col" class="col-md-2">Opciones</th>
     </tr>
   </thead>
@@ -25,6 +26,9 @@
          </td>
         <td scope="row">
           <?php echo $departamento['cantidad']; ?>
+         </td>
+        <td scope="row">
+          <?php echo $departamento['costo']; ?>
          </td>
         <td scope="row">
           <?php echo $departamento['fecha']; ?>
