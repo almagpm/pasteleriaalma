@@ -12,47 +12,57 @@
       <th scope="col" class="col-md-3">Opciones</th>
     </tr>
   </thead>
-  <tbody>
-    <?php foreach ($data as $key => $departamento): ?>
-      <tr>
-        <th scope="row">
-          <?php echo $departamento['id_usuario']; ?>
-        </th>
-        <td>
-          <?php echo $departamento['username']; ?>
-        </td>
-        <td>
-          <?php echo $departamento['nombre']; ?>
-        </td>
-        <td>
-          <?php echo $departamento['primer_apellido']; ?>
-        </td>
-        <td>
-          <?php echo $departamento['segundo_apellido']; ?>
-        </td>
-        <td>
-          <?php echo $departamento['correo']; ?>
-        </td>
-        <td>
-          <div class="btn-group" role="group" aria-label="Menu Renglon">
-            <a class="btn btn-primary"
-              href="departamento.php?action=edit&id=<?php echo $departamento['id_usuario'] ?>">Modificar</a>
-            <a class="btn btn-danger"
-              href="departamento.php?action=delete&id=<?php echo $departamento['id_usuario'] ?>">Eliminar</a>
-          </div>
-        </td>
-      </tr>
-    <?php endforeach; ?>
-  </tbody>
-  <tr>
-    <th scope="col"></th>
-    <th scope="col"></th>
-    <th scope="col"></th>
-    <th scope="col"></th>
-    <th scope="col"></th>
-    <th scope="col"></th>
-    <th scope="col">Se encontraron
-      <?php echo sizeof($data); ?> registros.
-    </th>
-  </tr>
+  <tbody></tbody>
+  <tfoot>
+    <tr>
+      <th scope="col"></th>
+      <th scope="col"></th>
+      <th scope="col"></th>
+      <th scope="col"></th>
+      <th scope="col"></th>
+      <th scope="col"></th>
+      <th scope="col">Se encontraron <span id="record-count"></span> registros.</th>
+    </tr>
+  </tfoot>
 </table>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+$(document).ready(function() {
+  var settings = {
+    "url": "http://localhost/paste/ws/usuario.php",
+    "method": "GET",
+    "timeout": 0,
+    "headers": {
+      "Cookie": "PHPSESSID=g9i2bdd3d9ni728qbtv6hcffk1"
+    },
+  };
+
+  $.ajax(settings).done(function(response) {
+    console.log(response);
+    var data = response;
+
+    for (var i = 0; i < data.length; i++) {
+      var usuario = data[i];
+      var row = "<tr>" +
+        "<th scope='row'>" + usuario.id_usuario + "</th>" +
+        "<td>" + usuario.username + "</td>" +
+        "<td>" + usuario.nombre + "</td>" +
+        "<td>" + usuario.primer_apellido + "</td>" +
+        "<td>" + usuario.segundo_apellido + "</td>" +
+        "<td>" + usuario.correo + "</td>" +
+        "<td>" +
+          "<div class='btn-group' role='group' aria-label='Menu Renglon'>" +
+            "<a class='btn btn-dark' href='usuario.php?action=rol&id=" + usuario.id_usuario + "'>Roles</a>" +
+            "<a class='btn btn-primary' href='usuario.php?action=edit&id=" + usuario.id_usuario + "'>Modificar</a>" +
+            "<a class='btn btn-danger' href='usuario.php?action=delete&id=" + usuario.id_usuario + "'>Eliminar</a>" +
+          "</div>" +
+        "</td>" +
+      "</tr>";
+      $("table tbody").append(row);
+    }
+
+    $("#record-count").text(data.length);
+  });
+});
+</script>

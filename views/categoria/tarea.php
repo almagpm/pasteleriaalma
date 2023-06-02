@@ -1,57 +1,65 @@
-<!-- ======= Breadcrumbs ======= -->
-<div class="breadcrumbs">
-  <div class="page-header d-flex align-items-center" style="background-image: url('');">
-    <div class="container position-relative">
-      <div class="row d-flex justify-content-center">
-        <div class="col-lg-6 text-center">
-        <h1>Productos de la categoria:
-            <?php echo $data[0]['categoria']; ?>
-        </h1>
+<h1 class="text-center">Productos de la categoria:
+    <?php echo $data[0]['categoria']; ?>
+</h1>
+<div class="container-fluid">
+    <div class='row'>
+        <div class="col-3">
+            <p><a href="categoria.php?action=newTask&id=<?php echo $data[0]['id_categoria']; ?>" class="btn btn-success"
+                    role="button">Ingresar un nuevo producto </a>
+            </p>
         </div>
-      </div>
     </div>
-  </div>
-  <nav>
-    <div class="container">
-      <ol> <li><a href="categoria.php" >Categorias</a></li>
-        <li><?php echo $data[0]['categoria']; ?></li>
-      </ol>
-    </div>
-  </nav>
-</div><!-- End Breadcrumbs -->
-<div class="listado_articulos">
-    <?php
-    for ($m = 0; $m < sizeof($data_tarea); ): ?>
-        <div class="row">
-            <?php for ($n = 0; $n < 4, $m < sizeof($data_tarea); $n++, $m++): ?>
-                <div class="col-3">
-                    <div class="card tarjeta_producto" style="width: 18rem;">
-                        <a class="card-image" href="categoria.php?action=editTask&id=<?php echo $data_tarea[$m]['id_producto']; ?>">
-                        <img src="data:image/png;base64,<?php echo base64_encode($data_tarea[$m]['imagen'])?>" class="card-img-top" alt="..."
-                                href="categoria.php?action=editTask&id=<?php echo $data_tarea[$m]['id_producto']; ?>">
-                        </a>
-                        <div class="card-body">
-                            <div class="div_titulo">
-                                <a class="card-title" href="categoria.php?action=editTask&id=<?php echo $data_tarea[$m]['id_producto']; ?>">
-                                    <?php echo $data_tarea[$m]['nombre']; ?>
-                                </a>
-                            </div>
-                            <p>
-                                <b>
-                                    <?php echo '$' . substr($data_tarea[$m]['precio_referencia'], 0, strlen($data_tarea[$m]['precio_referencia']) - 4); ?>
-                                </b>
-                            </p>
-                            <div class="div_boton">
-                                <a href="categoria.php?action=editTask&id=<?php echo $data_tarea[$m]['id_producto']; ?>" class="btn btn-success">Ver más</a>
-                            </div>
-                        </div>
-                    </div>
-                    <br>
-                </div>
-
-            <?php endfor; ?>
-            
-        </div>
-    
-    <?php endfor; ?>
 </div>
+
+<table class="table table-responsive table-bordered">
+    <thead>
+        <tr>
+            <th scope="col" class="col-md-2">id</th>
+            <th scope="col-md-4" class="col-md-4">Imagen</th>
+            <th scope="col-md-4" class="col-md-8">Nombre</th>
+            <th scope="col-md-4" class="col-md-3">Descripcion</th>
+            <th scope="col-md-2" class="col-md-3">Precio</th>
+            <th scope="col-md-2" class="col-md-3">Opciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        <?php foreach ($data_tarea as $key => $tarea): ?>
+            <tr>
+                <td scope="row">
+                    <?php echo $tarea['id_producto']; ?>
+                </td>
+                <td scope="row">
+                <img src="data:image/png;base64,<?php echo base64_encode($tarea['imagen']); ?>" class="card-img-top" alt="...">
+                </td>
+                <td scope="row">
+                    <?php echo $tarea['nombre']; ?>
+                </td>
+                <td scope="row">
+                    <?php echo $tarea['descripcion']; ?>
+                </td>
+                <td scope="row">
+                    <?php echo $tarea['precio_referencia']; ?>
+                </td>
+
+
+
+               
+                <td>
+                    <div class="btn-group" role="group" aria-label="Menu Renglon">
+                        <a class="btn btn-primary"
+                            href="categoria.php?action=editTask&id=<?php echo $data['0']['id_categoria'] ?>&id_producto=<?php echo $tarea['id_producto']; ?>">Editar</a>
+                        <a class="btn btn-danger"
+                            href="categoria.php?action=deleteTask&id=<?php echo $data['0']['id_categoria'] ?>&id_producto=<?php echo $tarea['id_producto']; ?>">Eliminar</a>
+                    </div>
+                </td>
+            </tr>
+        <?php endforeach; ?>
+    </tbody>
+    <tr>
+        <th scope="col"></th>
+        <th scope="col"></th>
+        <th scope="col">Se encontraron
+            <?php echo sizeof($data_tarea); ?> registros.
+        </th>
+    </tr>
+</table>

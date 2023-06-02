@@ -40,8 +40,6 @@
                   <input type="submit" name="enviar" value="ingresar" class="btn btn-dark btn-lg btn-block">
                   </div>
 
-                  <a href="login.php?action=registro">¿No cuenta con una cuenta? Registrate</a>
-
                 </form>
 
               </div>
